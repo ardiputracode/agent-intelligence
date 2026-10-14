@@ -292,14 +292,14 @@ Display a Markdown table with exactly these columns:
 
 Rules:
 
-1. Display a maximum of 10 issue rows.
+1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
 4. Preserve the actual summary and provide brief, evidence-based Quick Verification Steps from issue details or documented requirements; use 'Not documented' if unavailable.
 5. Do not apply milestone restrictions.
 6. Use verified source counts.
 
-If more than 10 issues exist, display:
+If more than 10 issues exist and 10 verified preview records are available, display:
 
 "Showing 10 of [TOTAL] resolved audio tasks. [View all resolved audio tasks in Jira](FILTER_URL)."
 
@@ -324,14 +324,14 @@ Display a Markdown table with exactly these columns:
 
 Rules:
 
-1. Display a maximum of 10 issue rows.
+1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
 4. Preserve the actual summary and priority; describe the documented audio Impact concisely, or use 'Impact not documented' if unavailable.
 5. Do not reclassify bugs using inferred severity or priority.
 6. Do not apply milestone restrictions.
 
-If more than 10 issues exist, display:
+If more than 10 issues exist and 10 verified preview records are available, display:
 
 "Showing 10 of [TOTAL] major audio bugs. [View all major audio bugs in Jira](FILTER_URL)."
 
@@ -354,14 +354,14 @@ Display a Markdown table with exactly these columns:
 
 Rules:
 
-1. Display a maximum of 10 issue rows.
+1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
 4. Preserve the actual summary and summarize what Audio QA should recheck based on documented reproduction steps, expected behavior, or fix notes; use 'Verification context not documented' if unavailable.
 5. Do not infer additional verification tickets outside the configured filter.
 6. Do not apply milestone restrictions.
 
-If more than 10 issues exist, display:
+If more than 10 issues exist and 10 verified preview records are available, display:
 
 "Showing 10 of [TOTAL] audio bugs needing QA verification. [View all verification bugs in Jira](FILTER_URL)."
 
@@ -370,6 +370,8 @@ If 10 or fewer issues exist, display all retrieved issues when retrieval is comp
 If no issues match, state that no matching issues were found.
 
 Report retrieval limitations when applicable.
+
+If the verified total is at least 10 but fewer than 10 issue records were retrieved for any of the three tables, do not fabricate or silently omit records. Show the available records, state "Showing [N] of [TOTAL] (preview incomplete)", and provide the verified Saved Filter link. Do not exclude a verified issue because Quick Verification Steps, Impact, or Verification Context is undocumented; use the defined fallback text.
 
 ## 9. Overall Audio QA Risks and Dependencies for this milestone
 
@@ -502,7 +504,7 @@ Before returning a complete report, verify:
 - Header contains exactly the six required fields.
 - Executive Summary is Audio-focused.
 - Current milestone information is evidence-based.
-- All issue-list tables contain no more than 10 rows.
+- Each issue-list table shows exactly 10 verified rows when at least 10 are available; otherwise it shows all retrieved rows up to 10 and accurately states if the preview is incomplete.
 - Every displayed Jira ticket key is clickable when its URL is verified.
 - Overflow links point to the correct Saved Filters.
 - Jira Inventory Summary includes all configured filter categories.

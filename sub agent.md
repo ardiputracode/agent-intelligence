@@ -280,6 +280,8 @@ For the following filters, retrieve at least the first 10 matching issues when a
 
 Preserve the issue ordering returned by the Saved Filter query.
 
+For each of these three preview filters, collect exactly 10 distinct verified issue keys, summaries, and clickable URLs when at least 10 issues match, before researching their detailed context. Do not reduce the preview below 10 merely because detailed verification steps, impact, or verification context are unavailable; use the documented fallback values. Return all 10 records to the Main Agent without summarizing away individual rows. If fewer than 10 records can be retrieved despite a verified total of at least 10, flag the preview as incomplete and report how many were actually retrieved.
+
 Obtain reliable total issue counts independently of the 10-row preview when supported.
 
 For the remaining filters, prioritize accurate counts and sufficient relevant issue evidence for Audio QA analysis.
@@ -339,7 +341,7 @@ Source:
 Provide the Main Agent with:
 
 - Verified total matching issue count, if available.
-- Maximum 10 issue records for the report preview.
+- Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
 - Issue summaries.
 - Quick Verification Steps grounded in documented issue details, acceptance criteria, or Confluence; use "Not documented" if unavailable.
@@ -366,7 +368,7 @@ Source:
 Provide:
 
 - Verified total matching issue count, if available.
-- Maximum 10 issue records for the report preview.
+- Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
 - Issue summaries.
 - Actual priorities.
@@ -400,7 +402,7 @@ Source:
 Provide:
 
 - Verified total matching issue count, if available.
-- Maximum 10 issue records for the report preview.
+- Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
 - Issue summaries.
 - Verification Context describing what Audio QA should recheck, grounded in reproduction steps, expected results, or fix notes; use "Verification context not documented" if unavailable.
@@ -562,7 +564,7 @@ Provide the following research data:
 ## Resolved Audio Tasks
 
 - Total matching count
-- Maximum 10 preview records
+- Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
 - Ticket keys, summaries, Quick Verification Steps, and URLs
 - Saved Filter URL
 - Retrieval completeness
@@ -570,7 +572,7 @@ Provide the following research data:
 ## Major Audio Bugs
 
 - Total matching count
-- Maximum 10 preview records
+- Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
 - Ticket keys, summaries, priorities, Impact, and URLs
 - Saved Filter URL
 - Retrieval completeness
@@ -578,7 +580,7 @@ Provide the following research data:
 ## Audio Bugs Needing QA Verification
 
 - Total matching count
-- Maximum 10 preview records
+- Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
 - Ticket keys, summaries, Verification Context, and URLs
 - Saved Filter URL
 - Retrieval completeness
