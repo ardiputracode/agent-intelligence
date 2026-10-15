@@ -129,7 +129,7 @@ Use Jira issue details to support analysis, not to override authoritative filter
 
 Prioritize:
 
-1. Current milestone audio-relevant content and features.
+1. All documented current-milestone content and features, each assessed for Audio QA relevance (including unverified cases).
 2. Audio implementation progress.
 3. Outstanding Audio Tasks.
 4. Resolved Audio Tasks.
@@ -139,7 +139,7 @@ Prioritize:
 8. Audio-related milestone risks.
 9. Recommended Audio QA focus.
 
-Use non-audio information only as supporting context.
+Use non-audio information only as supporting context, except for the complete current-milestone feature inventory in STEP 2. Do not treat unverified audio relevance as confirmed audio work.
 
 Do not generate a general project health or project management analysis.
 
@@ -207,37 +207,34 @@ Return:
 
 If the current milestone cannot be established, return Unverified. Do not substitute unfiltered project-wide Jira results for milestone-scoped inventories.
 
-# STEP 2 — AUDIO-RELEVANT MILESTONE SCOPE
+# STEP 2 — COMPLETE MILESTONE CONTENT AND AUDIO QA RELEVANCE
 
-Identify documented milestone features and content relevant to Audio QA.
+Discover ALL documented content and features belonging to the verified current milestone across every configured Confluence Space, including features with no audio task or documented audio requirement. Do not restrict discovery to audio keywords, audio tickets, or audio-specific documentation.
 
-Investigate relevant information about:
+For each documented milestone content or feature, return:
 
-- SFX implementation
-- Voice-over and dialogue
-- Music implementation
-- Ambient audio
-- Audio triggers and events
-- Audio playback behavior
-- Spatial audio and attenuation
-- Audio transitions
-- Audio mixing and balancing
-- Audio behavior across target platforms
-- Audio-related content dependencies
+1. **Content / Feature:** Its documented name.
+2. **Quick Brief:** One short, source-grounded description of the feature/content.
+3. **Audio QA Relevance:** Exactly one of the four labels below.
+4. **Audio QA Check:** A concise verification focus supported by documented audio requirements, or a manual confirmation question if audio relevance remains unverified.
+5. **Related Tickets / Sources:** Verified clickable Jira/Confluence references, with the basis for any claimed issue association.
 
-These are research categories, not assumptions that every feature uses all of them.
+Audio QA Relevance classification:
 
-For each relevant feature or content item, return:
+- **Confirmed Audio-Relevant:** Direct documentation or linked issues confirm audio requirements, functionality, or related implementation.
+- **Possible Audio Relevance — Manual Verification Needed:** Some evidence suggests possible audio behavior, but its applicability/requirements are not confirmed.
+- **Audio Relevance Unverified — Manual Verification Needed:** The feature belongs to the milestone but no dependable evidence establishes an audio requirement. Do not presume one exists.
+- **Explicitly No Audio Requirement:** Only when documentation explicitly states that audio work or Audio QA coverage is not required. Absence of audio tickets is not enough.
 
-1. Feature/content name.
-2. Documented audio requirements or functionality.
-3. Relevant Audio QA testing implications.
-4. Supporting Confluence references.
-5. Related Jira issues when verified.
+Check relevant audio areas only when supported: SFX, VO, Music, ambient audio, triggers/events, playback, spatial audio/attenuation, transitions, mixing, and platform behavior.
 
-Do not invent undocumented audio requirements.
+If audio is unverified, use a neutral check such as "Confirm whether this feature has audio requirements or needs Audio QA coverage" instead of inventing a sound, expected behavior, test steps, or defect.
 
-Do not expand into unrelated gameplay or art specifications.
+Use only verified issue-to-feature relationships. A related non-audio issue may be referenced as milestone context but must not be presented as evidence of audio work without separate support. If no related issue is verified, explicitly say so.
+
+Search across all configured Confluence Spaces with equal priority; deduplicate the same feature appearing in multiple documents. Preserve distinct features/content and include clickable sources. If document retrieval is incomplete, report inventory coverage limitations.
+
+Do not expand into unrelated detailed gameplay or art specifications, and do not turn items requiring manual confirmation into confirmed blockers, readiness findings, or automatic priorities.
 
 # STEP 3 — JIRA SAVED FILTER RETRIEVAL
 
@@ -585,12 +582,14 @@ Provide the following research data:
 - Confidence level
 - Confluence references
 
-## Audio-Relevant Milestone Content
+## All Milestone Content and Audio QA Relevance
 
-- Feature/content names
-- Audio requirements
-- Audio testing implications
-- Relevant source links
+- All documented current-milestone feature/content names, deduplicated across configured Confluence Spaces
+- Quick Brief for each item
+- One of the four defined Audio QA Relevance labels for each item
+- Evidence-based Audio QA Check or manual confirmation needed
+- Verified related Jira tickets and clickable Confluence sources, or an explicit indication when no related Jira ticket is verified
+- Feature-inventory coverage limitations, when applicable
 
 ## Audio Implementation Observations
 
@@ -679,6 +678,7 @@ Before returning findings:
 1. Confirm the correct project was analyzed.
 2. Confirm all configured accessible Confluence Spaces were considered.
 3. Confirm milestone selection is evidence-based.
+   3a. Confirm STEP 2 includes all accessible documented milestone features, even without audio evidence; each has a Quick Brief, Audio QA Relevance label, Audio QA Check, and traceable sources.
 4. Confirm the six required Jira Saved Filters were queried.
 5. Confirm the optional filter was handled correctly.
 6. Confirm the open-only filter definitions were preserved.

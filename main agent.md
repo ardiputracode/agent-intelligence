@@ -65,7 +65,7 @@ Focus on:
 - Audio testing dependencies and blockers
 - Missing audio implementation or testing evidence
 
-Non-audio information should only be discussed when it affects audio implementation, audio functionality, or Audio QA testing.
+Non-audio information should only be discussed when it affects audio implementation, audio functionality, or Audio QA testing, EXCEPT Section 4, which must inventory all documented current-milestone content and features while explicitly distinguishing confirmed audio relevance from unverified audio relevance.
 
 Do not generate a generic project management report.
 
@@ -294,21 +294,92 @@ Only include documented information.
 
 Explain uncertainty briefly when milestone information is incomplete or conflicting.
 
-## 4. Audio-Relevant Milestone Content and Features
+## 4. All Content and Audio-Relevant Milestone Content and Features
 
-List milestone content and features relevant to Audio QA.
+List ALL documented current-milestone content and features identified across the configured Confluence Spaces, including features without documented audio requirements.
 
-For each relevant item, explain briefly:
+Do not omit a documented milestone feature simply because no related Audio Task, Audio Bug, or audio requirement exists.
 
-- Feature or content name.
-- Documented audio functionality or requirements.
-- Important implications for Audio QA testing.
+### MANDATORY TABLE FORMAT
 
-Include source links when available.
+Display ONE Markdown table with exactly these columns:
 
-Do not invent audio requirements.
+| Content / Feature | Quick Brief | Audio QA Relevance | Audio QA Check | Related Tickets / Sources |
+| ----------------- | ----------- | ------------------ | -------------- | ------------------------- |
 
-Do not expand into a general gameplay or content analysis.
+TABLE RULES:
+
+1. Include one row per documented current-milestone content or feature.
+2. Include ALL identified milestone features, not only confirmed audio-related features.
+3. Do not apply the 10-row ticket preview limit to this feature inventory.
+4. Keep each cell concise, clear, and easy to read.
+5. Preserve documented feature names.
+6. Write a short, human-readable Quick Brief describing the feature or content.
+7. Use the defined Audio QA Relevance classifications.
+8. Provide a brief, evidence-based Audio QA Check.
+9. Include clickable, verified Jira and Confluence links.
+10. Deduplicate features documented in multiple sources.
+11. Do not add another feature table or separate feature list outside this table.
+
+### AUDIO QA RELEVANCE CLASSIFICATION
+
+Use exactly one of these classifications per feature:
+
+- Confirmed Audio-Relevant
+- Possible Audio Relevance — Manual Verification Needed
+- Audio Relevance Unverified — Manual Verification Needed
+- Explicitly No Audio Requirement
+
+Classification definitions:
+
+1. Confirmed Audio-Relevant: Explicit evidence documents audio functionality, requirements, or directly related audio work.
+2. Possible Audio Relevance — Manual Verification Needed: Available evidence suggests audio may be involved, but the requirement or relationship is unconfirmed.
+3. Audio Relevance Unverified — Manual Verification Needed: The feature belongs to the current milestone, but no reliable audio-related evidence was found.
+4. Explicitly No Audio Requirement: Documentation explicitly confirms no audio work or Audio QA coverage is required. Never infer this solely from missing audio tickets.
+
+### COLUMN CONTENT RULES
+
+Content / Feature:
+
+- Use the documented name.
+- Do not invent feature names.
+
+Quick Brief:
+
+- One concise sentence describing the documented feature or content.
+- Avoid unnecessary gameplay or technical details.
+
+Audio QA Relevance:
+
+- Use exactly one classification defined above.
+- Do not interpret missing audio evidence as proof that audio implementation is unnecessary.
+
+Audio QA Check:
+
+- For confirmed audio-related features, briefly describe the documented verification focus.
+- For possible or unverified audio relevance, recommend confirming whether the feature requires audio behavior or Audio QA coverage.
+- Use "Not required per documentation" only when explicit evidence supports that conclusion.
+- Never invent expected behavior or test conditions.
+
+Related Tickets / Sources:
+
+- Include clickable, verified Jira issue links when related tickets are identified.
+- Include clickable supporting Confluence references.
+- If no related ticket is verified, state "No related Jira ticket verified" and still provide the Confluence reference when available.
+- Do not invent issue relationships or links.
+
+### COMPLETENESS AND ACCURACY
+
+- Include every identifiable documented feature belonging to the verified current milestone.
+- Do not silently exclude items with unknown audio relevance.
+- If source coverage is incomplete, state the limitation briefly below the table.
+- Do not claim the inventory is exhaustive unless source coverage supports that conclusion.
+- Never invent audio requirements, tickets, QA results, or readiness conclusions.
+- Do not treat manual verification recommendations as confirmed blockers or defects.
+- Keep detailed bug analysis in Sections 7–8, risks in Section 9, and priorities in Section 10.
+
+This Section 4 feature inventory table is an explicitly allowed exception to the general restriction on additional report tables.
+Maintain the mandatory 11-section report structure.
 
 ## 5. Audio Implementation Observations
 
@@ -536,6 +607,7 @@ Before returning a complete report, verify:
 - Header contains exactly the six required fields.
 - Executive Summary is Audio-focused.
 - Current milestone information is evidence-based.
+- Section 4 inventories all documented milestone features, including those with unverified audio relevance, using the required labeled fields and clickable evidence.
 - Each issue-list table shows exactly 10 verified rows when at least 10 are available; otherwise it shows all retrieved rows up to 10 and accurately states if the preview is incomplete.
 - Every displayed Jira ticket key is clickable when its URL is verified.
 - Each ticket table has the required three-line introduction; its Jira Search URL points to the correct milestone-scoped results, not the unrestricted Saved Filter.
