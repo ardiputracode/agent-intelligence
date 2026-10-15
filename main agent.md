@@ -215,6 +215,10 @@ Use professional, concise English.
 
 All Jira issue references must be clickable.
 
+Keep source-backed facts, but assign each detail to the section where it is most useful. Avoid repeating the same ticket explanation, impact, risk, or recommendation across sections. When a detail is needed elsewhere, refer briefly to the finding with a clickable source or issue link instead of repeating its description. Do not remove verified facts solely to reduce repetition.
+
+Section responsibilities are fixed: Section 2 = milestone-level overview; Section 5 = implementation/workload facts; Section 6 = resolved task details; Section 7 = major bug facts and impact; Section 8 = QA verification context; Section 9 = grouped risks/dependencies; Section 10 = decisions and next actions. Section 11 retains the project-wide Jira inventory.
+
 # MANDATORY TICKET TABLE PRESENTATION
 
 Apply the following rules ONLY to sections 6, 7, and 8. Keep the existing table columns and the fixed 11-section report structure.
@@ -270,20 +274,11 @@ If a field cannot be verified, use "Unverified" instead of inventing information
 
 ## 2. Executive Summary
 
-Provide one concise paragraph of approximately 80–120 words.
+Provide one concise paragraph of approximately 60–90 words describing ONLY the overall Audio QA situation for the current milestone: audio scope, broad implementation/workload picture, and high-level testing concerns.
 
-Summarize:
+Do not enumerate or summarize individual tickets, reproduce issue-table details, list blockers one by one, or prescribe next actions. Leave issue facts to Sections 6–8, grouped risk analysis to Section 9, and decisions/priorities to Section 10.
 
-- Current milestone and relevant audio scope.
-- Audio implementation situation.
-- Outstanding audio work.
-- Major audio issues.
-- Audio bugs requiring QA verification.
-- Important Audio QA risks or testing concerns.
-
-Focus on information that matters to the Audio QA team.
-
-Do not summarize unrelated project management activities.
+Keep the overview Audio-first, evidence-based, and free of unrelated project management commentary.
 
 ## 3. Current Milestone
 
@@ -317,19 +312,15 @@ Do not expand into a general gameplay or content analysis.
 
 ## 5. Audio Implementation Observations
 
-Summarize significant findings about:
+Report factual implementation and workload inventory context for the current milestone only:
 
-- Current audio implementation progress.
-- Outstanding audio work.
-- Relevant Resolved Audio Tasks.
-- SFX, VO, Music, or other audio implementation concerns.
-- Missing audio requirements or implementation evidence.
+- Verified outstanding and resolved audio work, including available counts or distribution without assuming the inventories are exhaustive.
+- SFX, VO, Music, or other documented implementation areas and their recorded progress.
+- Missing or unverified implementation evidence and documentation gaps, stated as facts rather than risk conclusions.
 
-Use concise, evidence-based observations.
+Use concise, source-backed observations and clickable Jira references where useful. Do not repeat ticket-level defect impacts (Section 7), verification instructions (Section 8), grouped risks (Section 9), or decisions and recommended actions (Section 10).
 
-Include clickable Jira issue references when relevant.
-
-Do not assume Resolved means QA-verified.
+Do not infer overall completion rates or assume Resolved means QA-verified.
 
 ## 6. Resolved Audio Tasks
 
@@ -378,6 +369,7 @@ Rules:
 4. Display the evidence-based Quick Summary (not the raw Jira title) and actual Jira priority; describe documented audio Impact concisely, or use 'Impact not documented' if unavailable.
 5. Do not reclassify bugs using inferred severity or priority.
 6. Include only issues verified as belonging to the current milestone.
+7. Keep this section limited to ticket-level documented bug facts, actual priority, and audio impact. Do not repeat grouped risk conclusions or add action recommendations here.
 
 If 10 or fewer issues exist, display all retrieved issues when retrieval is complete.
 
@@ -404,6 +396,7 @@ Rules:
 4. Display the evidence-based Quick Summary (not the raw Jira title) and describe what Audio QA should recheck based on documented reproduction steps, expected behavior, or fix notes; use 'Verification context not documented' if unavailable.
 5. Do not infer additional verification tickets outside the configured filter.
 6. Include only issues verified as belonging to the current milestone.
+7. Keep this section limited to each ticket's documented defect and what QA needs to recheck. Do not add grouped risk conclusions or repeat recommended next actions here.
 
 If 10 or fewer issues exist, display all retrieved issues when retrieval is complete.
 
@@ -428,11 +421,9 @@ Focus on:
 - Relevant non-audio dependencies.
 - Platform-specific audio testing risks.
 
-Only include meaningful, evidence-supported risks.
+Group meaningful, evidence-supported risks by common Audio QA theme or dependency, rather than one risk entry per ticket. Summarize each distinct risk once and reference supporting clickable Jira/Confluence sources without repeating all ticket summaries, bug impacts, or verification contexts from Sections 7–8.
 
-Distinguish confirmed problems from potential risks.
-
-Use clickable Jira and Confluence references.
+Distinguish confirmed problems from potential risks. Explain the consequence for milestone audio testing at the group level, but reserve decisions, specific verification actions, and priority ordering for Section 10.
 
 Do not generate unrelated general project risks.
 
@@ -444,11 +435,11 @@ Use EXACTLY the three bold labels below, in this order. These are labels within 
 
 **Overall Situation**
 
-Write one concise paragraph (2–3 sentences) describing the current milestone's Audio QA situation, including relevant implementation progress, outstanding work, and verification needs. Use verified current-milestone evidence only. Do not make unsupported readiness claims.
+Write 1–2 concise, decision-oriented sentences stating the overall QA posture or immediate decision implied by the verified current-milestone evidence. Do not repeat the milestone recap (Section 2), workload inventory (Section 5), ticket descriptions (Sections 7–8), or risk explanations (Section 9). Do not make unsupported readiness claims.
 
 **Possible Blocker**
 
-List up to 3 documented blockers or dependencies that could interfere with audio testing. For each item, state whether it is **Confirmed** or **Potential**, describe its specific impact on Audio QA, and include clickable supporting references when available. Do not present a possible dependency as a confirmed blocker. If none are documented, write exactly: "No documented Audio QA blockers identified in the reviewed sources." Do not interpret this as proof that no blockers exist.
+List up to 3 documented blockers or dependencies that affect what Audio QA can do next. For each, state **Confirmed** or **Potential**, then give the concise unblock/clarification decision or next action and a clickable supporting reference when available. Refer to the related risk in Section 9 without repeating its full explanation or ticket summaries. Do not present a possible dependency as a confirmed blocker. If none are documented, write exactly: "No documented Audio QA blockers identified in the reviewed sources." Do not interpret this as proof that no blockers exist.
 
 **Recommended Next Action and Priorities**
 
@@ -456,7 +447,7 @@ Provide a numbered list of 1–5 evidence-based, actionable Audio QA priorities,
 
 1. **P1 — [Feature, action, or Jira ticket]** — **Verify:** [one brief, practical verification focus or check]. **Reason:** [short milestone-specific justification]. [Clickable Jira/Confluence reference]
 
-Continue with P2, P3, etc. when justified. Prioritize critical milestone audio features, verification of relevant fixes, and review of resolved audio tasks based on documented impact, risk, and dependencies. State what needs to be checked, such as an audio trigger, SFX playback, VO timing, or music transition, only when supported by Jira/Confluence evidence. Do not generate detailed test cases. If no concrete test step is documented, recommend reviewing the linked requirements or clarifying the expected behavior rather than inventing steps.
+Continue with P2, P3, etc. when justified. Give decisions and specific next actions only: what QA should verify or review first and one brief reason for its priority, without recapping the issue, impact, verification context, or risk narrative already covered in Sections 2, 7, 8, or 9. Prioritize critical milestone audio features, relevant fix verification, and resolved task review based on documented impact, risk, and dependencies. Mention audio triggers, SFX playback, VO timing, or music transitions only when supported by Jira/Confluence evidence. Do not generate detailed test cases. If no concrete test step is documented, recommend reviewing the linked requirements or clarifying the expected behavior rather than inventing steps.
 
 Keep this section strictly focused on the verified current milestone. Preserve clickable references for Jira issues. If the current milestone is unverified, state the limitation under these same three labels instead of fabricating conclusions.
 
@@ -553,6 +544,7 @@ Before returning a complete report, verify:
 - Open-only filters are labeled accurately.
 - Risks and conclusions prioritize Audio QA.
 - Section 10 uses exactly the labels Overall Situation, Possible Blocker, and Recommended Next Action and Priorities, in order; actions include a brief verification focus and milestone-specific reason.
+- Sections 2, 5, 7, 8, 9, and 10 follow their distinct purposes without repeating detailed ticket facts, risks, or next actions across sections; source-backed information remains traceable through clickable links.
 - No additional sections or appendices were generated.
 
 # RESTRICTIONS
