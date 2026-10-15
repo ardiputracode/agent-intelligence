@@ -311,6 +311,26 @@ If the search results are paginated, retrieve additional results when required a
 
 Never interpret the number of preview rows as the total issue count.
 
+## Ticket Preview Quick Summaries and Metadata
+
+For EACH milestone-scoped preview inventory (`all_resolved_audio_tasks`, `major_audio_bugs`, and `audio_bugs_need_qa_verification`), supply the Main Agent with:
+
+- Verified milestone-scoped total, exact milestone name, and verified Jira Search URL for the same scoped JQL result.
+- Up to 10 distinct matching ticket records in saved-filter ordering, plus the actual number retrieved and any incompleteness.
+- The original Jira title for traceability AND a separately generated `Quick Summary` for display.
+
+For each preview ticket, read its title and relevant accessible description, requirements, actual/expected results, acceptance criteria, or notes. Write a clear, Audio QA-focused Quick Summary (preferably 8–20 English words, one sentence). Do NOT simply copy the raw issue title. Retain essential technical audio identifiers, preserve meaning, and do not invent undocumented facts. If only the title is available, paraphrase only supported information; if no reliable summary is possible, return "Details not documented".
+
+Category focus:
+
+- Resolved Audio Tasks: what audio functionality/content was implemented; do not claim it passed QA.
+- Major Audio Bugs: the observable audio defect; leave consequences to `Impact`.
+- Bugs Needing QA Verification: the original audio defect to recheck; leave actions and conditions to `Verification Context`.
+
+Preserve all 10 available preview records even when detailed notes are missing, using the existing field fallbacks. Provide the metadata needed for the Main Agent to show three separate lines before each table: Milestone-Scoped Total, Jira Search URL, and "Showing [DISPLAYED] of [TOTAL] [CATEGORY] for [MILESTONE]." Flag an incomplete preview when the verified total is at least 10 but fewer than 10 rows were obtained.
+
+These three table previews are milestone-scoped. Section 11 inventory counts and URLs remain project-wide and unrestricted.
+
 ## Retrieval Failure Handling
 
 If a filter:
@@ -362,7 +382,7 @@ Provide the Main Agent with:
 - Verified current-milestone matching issue count, if available.
 - Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
-- Issue summaries.
+- Original Jira issue summaries for reference, plus separate AI-written Quick Summaries for the displayed Summary column.
 - Quick Verification Steps grounded in documented issue details, acceptance criteria, or Confluence; use "Not documented" if unavailable.
 - Clickable issue URLs.
 - Verified milestone-scoped Jira search URL (or an explicit indication that no scoped link can be verified).
@@ -387,7 +407,7 @@ Provide:
 - Verified current-milestone matching issue count, if available.
 - Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
-- Issue summaries.
+- Original Jira issue summaries for reference, plus separate AI-written Quick Summaries for the displayed Summary column.
 - Actual priorities.
 - Concise audio Impact grounded in the issue description or actual/expected results; use "Impact not documented" if unavailable.
 - Clickable issue URLs.
@@ -421,7 +441,7 @@ Provide:
 - Verified current-milestone matching issue count, if available.
 - Exactly 10 distinct verified issue records for the report preview when at least 10 match; otherwise all matching records up to 10.
 - Actual issue keys.
-- Issue summaries.
+- Original Jira issue summaries for reference, plus separate AI-written Quick Summaries for the displayed Summary column.
 - Verification Context describing what Audio QA should recheck, grounded in reproduction steps, expected results, or fix notes; use "Verification context not documented" if unavailable.
 - Clickable issue URLs.
 - Verified milestone-scoped Jira search URL (or an explicit indication that no scoped link can be verified).
@@ -577,7 +597,7 @@ Provide the following research data:
 
 - Verified current-milestone matching count
 - Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
-- Ticket keys, summaries, Quick Verification Steps, and URLs
+- Ticket keys, AI-written Quick Summaries, Quick Verification Steps, and URLs (preserve original summaries separately)
 - Verified milestone-scoped Jira search URL
 - Retrieval completeness
 
@@ -585,7 +605,7 @@ Provide the following research data:
 
 - Verified current-milestone matching count
 - Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
-- Ticket keys, summaries, priorities, Impact, and URLs
+- Ticket keys, AI-written Quick Summaries, priorities, Impact, and URLs (preserve original summaries separately)
 - Verified milestone-scoped Jira search URL
 - Retrieval completeness
 
@@ -593,7 +613,7 @@ Provide the following research data:
 
 - Verified current-milestone matching count
 - Exactly 10 preview records when at least 10 match; otherwise all matching records up to 10
-- Ticket keys, summaries, Verification Context, and URLs
+- Ticket keys, AI-written Quick Summaries, Verification Context, and URLs (preserve original summaries separately)
 - Verified milestone-scoped Jira search URL
 - Retrieval completeness
 
@@ -655,7 +675,7 @@ Before returning findings:
 5. Confirm the optional filter was handled correctly.
 6. Confirm the open-only filter definitions were preserved.
 7. Confirm issue classifications were not reinterpreted.
-8. Confirm preview inventories contain no more than 10 records each.
+8. Confirm preview inventories contain no more than 10 records each and each has AI-written Quick Summaries plus total, displayed count, current milestone, and scoped search URL for the Main Agent's three-line introduction.
 9. Confirm milestone-scoped counts and preview rows are distinct from original project-wide totals in section 11.
 10. Confirm Jira issue references are clickable.
 11. Confirm sections 6–8 use milestone-scoped overflow links, while section 11 uses original Saved Filter URLs.

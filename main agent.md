@@ -215,6 +215,41 @@ Use professional, concise English.
 
 All Jira issue references must be clickable.
 
+# MANDATORY TICKET TABLE PRESENTATION
+
+Apply the following rules ONLY to sections 6, 7, and 8. Keep the existing table columns and the fixed 11-section report structure.
+
+Before EACH of the three ticket tables, display exactly these three lines, in this order:
+
+**Milestone-Scoped Total:** [MILESTONE_TOTAL]
+
+- **Jira Search URL:** [MILESTONE_TOTAL Issues](VERIFIED_MILESTONE_SCOPED_SEARCH_URL)
+
+Showing [DISPLAYED] of [MILESTONE_TOTAL] [CATEGORY] for [CURRENT_MILESTONE].
+
+Use these category labels respectively: "resolved audio tasks", "major audio bugs", and "audio bugs needing QA verification".
+
+- The total and the Jira Search URL must refer to the SAME verified current-milestone-scoped JQL result, not the original unrestricted Saved Filter.
+- Display exactly 10 distinct issue rows when at least 10 matching records are available; otherwise show all available matching records, up to 10.
+- If a verified total exceeds the retrieved row count and fewer than 10 rows were retrieved, append "(preview incomplete)" to the third line; never invent rows.
+- If a total or scoped URL cannot be verified, show "Unavailable" for that value instead of inventing counts or links. Keep the three-line layout and disclose incomplete retrieval within the existing section.
+- Do not repeat a separate "View all" or "Showing ..." overflow message below the table.
+- Section 11 remains project-wide and uses the original unrestricted Saved Filter totals and URLs.
+
+## SUMMARY COLUMN — MANDATORY QUICK SUMMARY
+
+The column header remains "Summary", but its content MUST be a concise, AI-written, human-readable quick summary, NOT the raw Jira issue title.
+
+- Derive each summary from the issue's title and available description, requirements, actual/expected results, acceptance criteria, or notes.
+- Prefer one clear English sentence of approximately 8–20 words.
+- Retain essential feature names and audio identifiers. Remove redundant prefixes, repetition, and irrelevant detail.
+- Preserve the documented meaning; do not invent audio behavior, implementation outcomes, root causes, or fix status.
+- If only the title is available, paraphrase only what it supports; if the issue cannot be reliably summarized, use "Details not documented".
+- For Resolved Audio Tasks, summarize the audio content/functionality implemented without claiming QA verification. Keep test guidance in Quick Verification Steps.
+- For Major Audio Bugs, summarize the observable audio defect. Keep the consequences in Impact.
+- For Bugs Needing QA Verification, summarize the defect to be rechecked. Keep testing actions and conditions in Verification Context.
+- Use the project subagent's evidence-based Quick Summary as the display value; do not replace it with the raw title.
+
 ## 1. Report Header
 
 Display exactly these fields:
@@ -312,13 +347,9 @@ Rules:
 1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
-4. Preserve the actual summary and provide brief, evidence-based Quick Verification Steps from issue details or documented requirements; use 'Not documented' if unavailable.
+4. Display the evidence-based Quick Summary (not the raw Jira title) and provide brief Quick Verification Steps from issue details or documented requirements; use 'Not documented' for unavailable steps.
 5. Include only issues verified as belonging to the current milestone.
 6. Use verified counts from the milestone-scoped results, not the original Saved Filter total.
-
-If more than 10 issues exist and 10 verified preview records are available, display:
-
-"Showing 10 of [MILESTONE_TOTAL] resolved audio tasks for [CURRENT_MILESTONE]. [View all milestone-matching resolved audio tasks in Jira](MILESTONE_SCOPED_URL)."
 
 If 10 or fewer issues exist, display all retrieved issues when retrieval is complete.
 
@@ -344,13 +375,9 @@ Rules:
 1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
-4. Preserve the actual summary and priority; describe the documented audio Impact concisely, or use 'Impact not documented' if unavailable.
+4. Display the evidence-based Quick Summary (not the raw Jira title) and actual Jira priority; describe documented audio Impact concisely, or use 'Impact not documented' if unavailable.
 5. Do not reclassify bugs using inferred severity or priority.
 6. Include only issues verified as belonging to the current milestone.
-
-If more than 10 issues exist and 10 verified preview records are available, display:
-
-"Showing 10 of [MILESTONE_TOTAL] major audio bugs for [CURRENT_MILESTONE]. [View all milestone-matching major audio bugs in Jira](MILESTONE_SCOPED_URL)."
 
 If 10 or fewer issues exist, display all retrieved issues when retrieval is complete.
 
@@ -374,13 +401,9 @@ Rules:
 1. If 10 or more matching issues exist, display exactly 10 distinct verified issue rows when available; otherwise display every available matching issue, up to 10 rows.
 2. Use the source filter's returned issue ordering.
 3. Every ticket key must be clickable.
-4. Preserve the actual summary and summarize what Audio QA should recheck based on documented reproduction steps, expected behavior, or fix notes; use 'Verification context not documented' if unavailable.
+4. Display the evidence-based Quick Summary (not the raw Jira title) and describe what Audio QA should recheck based on documented reproduction steps, expected behavior, or fix notes; use 'Verification context not documented' if unavailable.
 5. Do not infer additional verification tickets outside the configured filter.
 6. Include only issues verified as belonging to the current milestone.
-
-If more than 10 issues exist and 10 verified preview records are available, display:
-
-"Showing 10 of [MILESTONE_TOTAL] audio bugs needing QA verification for [CURRENT_MILESTONE]. [View all milestone-matching verification bugs in Jira](MILESTONE_SCOPED_URL)."
 
 If 10 or fewer issues exist, display all retrieved issues when retrieval is complete.
 
@@ -388,7 +411,7 @@ If no issues match, state that no matching issues were found.
 
 Report retrieval limitations when applicable.
 
-If the verified milestone-scoped total is at least 10 but fewer than 10 milestone-matching issue records were retrieved for any table, do not fabricate or silently omit records. Show the available records and state "Showing [N] of [MILESTONE_TOTAL] (preview incomplete)". Link to the verified milestone-scoped Jira search if available. Do not exclude a verified issue merely because Quick Verification Steps, Impact, or Verification Context is undocumented; use the defined fallback text.
+If a milestone-scoped total is at least 10 but fewer than 10 records were retrieved, show the available rows and flag the third mandatory introduction line as "(preview incomplete)". Do not exclude a verified issue because Quick Verification Steps, Impact, or Verification Context is undocumented; use the defined fallback text.
 
 ## 9. Overall Audio QA Risks and Dependencies for this milestone
 
@@ -489,7 +512,7 @@ Prefer canonical Jira issue URLs returned by Jira.
 
 Otherwise, construct links using the verified shared Jira Base URL and actual issue keys.
 
-For sections 6–8, overflow links must open verified milestone-scoped Jira search results; if unavailable, state "Milestone-scoped link unavailable". For section 11, Jira Filter Inventory Summary links must open the original, unrestricted Saved Filter. Never label a project-wide link as milestone-scoped, or vice versa.
+For sections 6–8, the mandatory Jira Search URL line must open verified milestone-scoped Jira search results; if unavailable, mark the scoped URL "Unavailable". For section 11, Jira Filter Inventory Summary links must open the original, unrestricted Saved Filter. Never label a project-wide link as milestone-scoped, or vice versa.
 
 Confluence source references must also be clickable.
 
@@ -506,7 +529,7 @@ If a valid URL cannot be established, disclose the limitation rather than creati
 5. Distinguish reliable source totals from retrieved issue rows.
 6. Do not silently truncate results.
 7. Respect the maximum 10-row limit for each ticket table.
-8. Provide clickable milestone-scoped Jira search links for larger inventories when verified.
+8. Provide the mandatory three-line introduction and clickable milestone-scoped Jira search link for each of the three ticket tables when verified.
 9. Report missing or unavailable information within the relevant existing report section.
 10. Never invent Jira issues, milestone dates, features, or conclusions.
 11. Ensure issue preview tables and milestone-focused findings use the verified current milestone, while section 11 reports original project-wide Saved Filter totals.
@@ -523,7 +546,8 @@ Before returning a complete report, verify:
 - Current milestone information is evidence-based.
 - Each issue-list table shows exactly 10 verified rows when at least 10 are available; otherwise it shows all retrieved rows up to 10 and accurately states if the preview is incomplete.
 - Every displayed Jira ticket key is clickable when its URL is verified.
-- Overflow links point to the correct milestone-scoped Jira results, not the unrestricted Saved Filters.
+- Each ticket table has the required three-line introduction; its Jira Search URL points to the correct milestone-scoped results, not the unrestricted Saved Filter.
+- Every Summary cell is a readable evidence-based Quick Summary, not the raw Jira issue title.
 - Jira Inventory Summary includes all configured filter categories using original project-wide totals and original Saved Filter links, without milestone restrictions.
 - Open-only filters are labeled accurately.
 - Risks and conclusions prioritize Audio QA.
