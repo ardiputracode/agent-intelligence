@@ -20,25 +20,31 @@ DDV Aliases:
 
 ## CONFLUENCE SOURCES
 
-Primary Space:
-https://gameloft.atlassian.net/wiki/spaces/DISNEYLIFE
+Space 1:
+https://YOUR-SITE.atlassian.net/wiki/spaces/SPACE_A
 
-Secondary Space:
-https://gameloft.atlassian.net/wiki/spaces/ATD
+Space 2:
+https://YOUR-SITE.atlassian.net/wiki/spaces/SPACE_B
 
-Additional Space 1:
-https://gameloft.atlassian.net/wiki/spaces/JP/pages/154116548/Disney+Dreamlight+Valley
+Space 3:
+https://YOUR-SITE.atlassian.net/wiki/spaces/SPACE_C
 
-## CONFLUENCE RESEARCH RULE
+Space 4:
+NONE
+
+Add more Space entries as needed.
+Remove unused entries or set them to NONE.
+
+# CONFLUENCE RESEARCH RULES
 
 1. Search all configured Confluence Spaces.
 2. Ignore entries configured as NONE.
-3. Use the Primary Space as the preferred source for official milestone information when its documentation is authoritative.
-4. Search the other spaces for milestone information, feature documentation, audio requirements, implementation details, and testing dependencies.
-5. Do not restrict research solely according to each space's assumed purpose.
-6. Cross-check relevant milestone information across the configured spaces.
-7. Prefer authoritative and current documentation when sources conflict.
-8. Explicitly report unresolved conflicting information.
+3. Treat all configured Confluence Spaces with equal priority and importance.
+4. Do not prioritize sources based on their order, labels, or position in the configuration.
+5. Search every space for milestone information, feature documentation, audio requirements, implementation details, and testing dependencies.
+6. Cross-check relevant information across all configured spaces.
+7. Evaluate source reliability based on documentation authority, relevance, accuracy, and recency, not space priority.
+8. When sources conflict, prefer the most authoritative and current evidence. Explicitly report unresolved conflicts.
 9. Include clickable links to supporting Confluence pages.
 10. Do not invent information from unavailable sources.
 
