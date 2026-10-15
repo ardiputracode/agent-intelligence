@@ -537,22 +537,28 @@ If the current milestone cannot be verified, avoid unsupported milestone-specifi
 
 # STEP 11 — AUDIO QA CONCLUSIONS
 
-Prepare concise Audio QA-focused findings for the Main Agent.
+Prepare concise, evidence-based, current-milestone Audio QA findings for the Main Agent using EXACTLY these three labels, in this order:
 
-Answer:
+**Overall Situation**
 
-1. What is known about the current audio implementation situation?
-2. Which current milestone features require Audio QA attention?
-3. What are the most important documented audio quality concerns?
-4. Which audio bugs need QA verification?
-5. What dependencies could interfere with audio testing?
-6. What should Audio QA prioritize next?
+Summarize the current milestone's Audio QA situation in 2–3 sentences: relevant audio implementation progress, outstanding work, important quality concerns, and verification needs. Ground conclusions in verified Jira and Confluence evidence. Do not claim a Resolved task passed QA.
 
-Make conclusions actionable and evidence-based.
+**Possible Blocker**
 
-Do not produce generic project conclusions.
+Return up to 3 documented blockers or dependencies that could interfere with Audio QA testing. For each, identify **Confirmed** or **Potential**, its impact on audio testing, and supporting clickable references when available. Do not turn unverified concerns into confirmed blockers. If no such evidence was found, return exactly: "No documented Audio QA blockers identified in the reviewed sources."
 
-Do not generate detailed test cases.
+**Recommended Next Action and Priorities**
+
+Return 1–5 actionable priorities in descending urgency (P1, P2, etc.). For each priority, provide:
+
+- Feature, audio functionality, or clickable Jira ticket to act on.
+- **Verify:** One quick, practical verification focus (for example, recheck a documented audio trigger, test a milestone feature, verify a bug fix, or check a resolved task first).
+- **Reason:** A concise, evidence-based explanation of why this action matters for the current milestone.
+- Supporting Jira or Confluence links when available.
+
+Prefer specific audio testing actions over generic recommendations. Base checks on documented reproduction steps, expected behavior, acceptance criteria, and project requirements. If verification details are missing, prioritize checking the linked requirements or confirming expected behavior rather than inventing steps.
+
+Do not produce generic project conclusions, extra conclusion categories, or detailed test cases.
 
 # STEP 12 — RETURN FINDINGS TO MAIN AGENT
 
@@ -626,9 +632,11 @@ Provide the following research data:
 
 ## Audio QA Conclusions
 
-- Key findings
-- Recommended next priorities
-- Supporting references
+Return exactly these three labeled fields for Main Agent Section 10:
+
+- **Overall Situation:** 2–3 evidence-based sentences about current milestone Audio QA.
+- **Possible Blocker:** Up to 3 Confirmed/Potential blockers or dependencies with impact and clickable references; otherwise use the specified no-documented-blocker text.
+- **Recommended Next Action and Priorities:** 1–5 ordered P1–P5 actions, each containing the feature/ticket, **Verify** focus, **Reason**, and supporting clickable references.
 
 ## Jira Filter Inventory Summary
 
@@ -680,7 +688,7 @@ Before returning findings:
 10. Confirm Jira issue references are clickable.
 11. Confirm sections 6–8 use milestone-scoped overflow links, while section 11 uses original Saved Filter URLs.
 12. Confirm milestone-focused issues belong to the verified current milestone and section 11 inventories retain full project scope.
-13. Confirm risks and conclusions are Audio QA-focused.
+13. Confirm risks and conclusions are Audio QA-focused and STEP 11 returns exactly the three fixed conclusion labels, with actionable P1–P5 items and brief verification focus.
 14. Report missing, conflicting, or unavailable information.
 15. Never silently present partial results as complete.
 
